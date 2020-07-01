@@ -5,7 +5,7 @@ import ProjectContext from "../../context/projects/projectContext";
 const ListTask = () => {
   //Extraer el state de proyectos
   const projectContext = useContext(ProjectContext);
-  const { proyecto } = projectContext;
+  const { proyecto, eliminarProyecto } = projectContext;
 
   //Si no hay proyecto seleccionado
   if (!proyecto) return <h1>Selecciona un proyecto</h1>;
@@ -20,6 +20,11 @@ const ListTask = () => {
     { nombre: "Elegir hosting", estado: true },
   ];
 
+  //Eliminar proyecto
+  const onClickEliminar = () => {
+    eliminarProyecto(proyectoActual.id);
+  };
+
   return (
     <Fragment>
       <h2>Proyecto: {proyectoActual.nombre}</h2>
@@ -32,7 +37,11 @@ const ListTask = () => {
           tareasProyecto.map((tarea) => <Task tarea={tarea} />)
         )}
       </ul>
-      <button type="button" className="btn btn-eliminar">
+      <button
+        type="button"
+        className="btn btn-eliminar"
+        onClick={onClickEliminar}
+      >
         Eliminar Proyecto &times;
       </button>
     </Fragment>
