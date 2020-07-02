@@ -1,19 +1,22 @@
 import React, { Fragment, useContext } from "react";
 import Task from "./Task";
 import ProjectContext from "../../context/projects/projectContext";
+import TaskContext from "../../context/tasks/taskContext";
 
 const ListTask = () => {
   //Extraer el state de proyectos
   const projectContext = useContext(ProjectContext);
   const { proyecto, eliminarProyecto } = projectContext;
 
+  //obtener las tareas del proyecto
+  const taskContext = useContext(TaskContext);
+  const { tareasproyecto } = taskContext;
+
   //Si no hay proyecto seleccionado
   if (!proyecto) return <h1>Selecciona un proyecto</h1>;
 
   // Array destructuring - Extraer el proyecto actual
   const [proyectoActual] = proyecto;
-
-  const tareasProyecto = [];
 
   //Eliminar proyecto
   const onClickEliminar = () => {
@@ -24,12 +27,12 @@ const ListTask = () => {
     <Fragment>
       <h2>Proyecto: {proyectoActual.nombre}</h2>
       <ul className="listado-tareas">
-        {tareasProyecto.length === 0 ? (
+        {tareasproyecto.length === 0 ? (
           <li className="tarea">
             <p>No hay Tareas</p>
           </li>
         ) : (
-          tareasProyecto.map((tarea) => <Task tarea={tarea} />)
+          tareasproyecto.map((tarea) => <Task tarea={tarea} />)
         )}
       </ul>
       <button

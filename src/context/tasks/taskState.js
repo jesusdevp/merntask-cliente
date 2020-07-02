@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
 
-import { TAREAS_PROYECTO } from "../../types";
+import { TAREAS_PROYECTO, AGREGAR_TAREA, VALIDAR_TAREA } from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -21,6 +21,8 @@ const TaskState = (props) => {
       { nombre: "Elegir colores", estado: false, proyectoId: 4 },
       { nombre: "Elegir platafromas de pago", estado: false, proyectoId: 3 },
     ],
+    tareasproyecto: null,
+    errortarea: false,
   };
 
   // Crear dispatch y state
@@ -33,11 +35,30 @@ const TaskState = (props) => {
     });
   };
 
+  //Agregar una tarea al proyecto seleccionado
+  const agregarTarea = (tarea) => {
+    dispatch({
+      type: AGREGAR_TAREA,
+      payload: tarea,
+    });
+  };
+
+  //Valida y muestra un error
+  const validarTarea = () => {
+    dispatch({
+      type: VALIDAR_TAREA,
+    });
+  };
+
   return (
     <TaskContext.Provider
       value={{
         tareas: state.tareas,
+        tareasproyecto: state.tareasproyecto,
+        errortarea: state.errortarea,
         obtenerTareas,
+        agregarTarea,
+        validarTarea,
       }}
     >
       {props.children}
