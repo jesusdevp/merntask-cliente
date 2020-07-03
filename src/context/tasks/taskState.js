@@ -10,6 +10,9 @@ import {
   VALIDAR_TAREA,
   ELIMINAR_TAREA,
   ESTADO_TAREA,
+  TAREA_ACTUAL,
+  ACTUALIZAR_TAREA,
+  LIMPIAR_TAREA,
 } from "../../types";
 
 const TaskState = (props) => {
@@ -96,6 +99,7 @@ const TaskState = (props) => {
     ],
     tareasproyecto: null,
     errortarea: false,
+    tareaseleccionada: null,
   };
 
   // Crear dispatch y state
@@ -141,17 +145,44 @@ const TaskState = (props) => {
     });
   };
 
+  //Extrae una tarea para edicion
+  const guardarTareaActual = (tarea) => {
+    dispatch({
+      type: TAREA_ACTUAL,
+      payload: tarea,
+    });
+  };
+
+  // Edita o modifica una tarea
+  const actualizarTarea = (tarea) => {
+    dispatch({
+      type: ACTUALIZAR_TAREA,
+      payload: tarea,
+    });
+  };
+
+  //Elimina la tarea seleccionada
+  const limpiarTarea = () => {
+    dispatch({
+      type: LIMPIAR_TAREA,
+    });
+  };
+
   return (
     <TaskContext.Provider
       value={{
         tareas: state.tareas,
         tareasproyecto: state.tareasproyecto,
         errortarea: state.errortarea,
+        tareaseleccionada: state.tareaseleccionada,
         obtenerTareas,
         agregarTarea,
         validarTarea,
         eliminarTarea,
         cambiarEstadoTarea,
+        guardarTareaActual,
+        actualizarTarea,
+        limpiarTarea,
       }}
     >
       {props.children}
