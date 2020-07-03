@@ -32,7 +32,7 @@ const ListTask = () => {
             <p>No hay Tareas</p>
           </li>
         ) : (
-          tareasproyecto.map((tarea) => <Task tarea={tarea} />)
+          tareasproyecto.map((tarea) => <Task key={tarea.id} tarea={tarea} />)
         )}
       </ul>
       <button
