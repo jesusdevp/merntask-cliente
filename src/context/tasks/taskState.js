@@ -2,6 +2,8 @@ import React, { useReducer } from "react";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
 
+import { v4 as uuidv4 } from "uuid";
+
 import {
   TAREAS_PROYECTO,
   AGREGAR_TAREA,
@@ -107,6 +109,8 @@ const TaskState = (props) => {
 
   //Agregar una tarea al proyecto seleccionado
   const agregarTarea = (tarea) => {
+    tarea.id = uuidv4();
+
     dispatch({
       type: AGREGAR_TAREA,
       payload: tarea,
