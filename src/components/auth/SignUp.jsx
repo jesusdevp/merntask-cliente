@@ -1,15 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AlertaContext from "../../context/alerts/alertContext";
 import AuthContext from "../../context/authentication/authContext";
 
-const Signup = () => {
+const Signup = (props) => {
   // extraer los valores del context
   const alertaContext = useContext(AlertaContext);
   const { alerta, mostrarAlerta } = alertaContext;
 
   const authContext = useContext(AuthContext);
-  const { registrarUsuario } = authContext;
+  const { mensaje, autenticado, registrarUsuario } = authContext;
+
+  // En caso de que el usuario se haya registrado o sea un registro duplicado
+
+  useEffect(() => {
+    if (autenticado) {
+      props.history.push("/projects");
+    }
+
+    if (mensaje) {
+      mostrarAlerta(mensaje.msg, mensaje.categoria);
+    }
+  }, [mensaje, autenticado, props.history]);
 
   //state para registrarse
   const [usuario, setUsuario] = useState({
