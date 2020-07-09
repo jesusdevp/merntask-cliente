@@ -1,11 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import AlertaContext from "../../context/alerts/alertContext";
+import AuthContext from "../../context/authentication/authContext";
 
 const Signup = () => {
   // extraer los valores del context
   const alertaContext = useContext(AlertaContext);
   const { alerta, mostrarAlerta } = alertaContext;
+
+  const authContext = useContext(AuthContext);
+  const { registrarUsuario } = authContext;
 
   //state para registrarse
   const [usuario, setUsuario] = useState({
@@ -53,6 +57,13 @@ const Signup = () => {
     if (password !== confirmar) {
       mostrarAlerta("Los passwords no son iguales", "alerta-error");
     }
+
+    // Pasarlo al action
+    registrarUsuario({
+      nombre,
+      email,
+      password,
+    });
   };
 
   return (
