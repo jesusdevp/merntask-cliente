@@ -2,7 +2,8 @@ import React, { useReducer } from "react";
 import AuthContext from "./authContext";
 import AuthReducer from "./authReducer";
 
-import cleinteAxios from "../../config/axios";
+import clienteAxios from "../../config/axios";
+import tokenAuth from "../../config/tokenAuth";
 
 import {
   REGISTRO_EXITOSO,
@@ -25,7 +26,7 @@ const AuthState = (props) => {
 
   const registrarUsuario = async (datos) => {
     try {
-      const respuesta = await cleinteAxios.post("/api/usuarios", datos);
+      const respuesta = await clienteAxios.post("/api/usuarios", datos);
       console.log(respuesta.data);
 
       dispatch({
@@ -53,11 +54,15 @@ const AuthState = (props) => {
     const token = localStorage.getItem("token");
     if (token) {
       // TODO: Funcion para enviar el token por header
+      tokenAuth(token);
     }
 
     try {
       const respuesta = await clienteAxios.get("/api/auth");
-      console.log(respuesta);
+      dispatch({
+        type: OBTENER_USUARIO,
+        payload: respuesta.data.usuario,
+      });
     } catch (error) {
       dispatch({
         type: LOGIN_ERROR,
