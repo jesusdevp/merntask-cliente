@@ -20,6 +20,7 @@ export default (state, action) => {
     case OBTENER_USUARIO:
       return {
         ...state,
+        autenticado: true,
         usuario: action.payload,
       };
     case LOGIN_ERROR:
@@ -28,6 +29,8 @@ export default (state, action) => {
       return {
         ...state,
         token: null,
+        usuario: null,
+        autenticado: null,
         mensaje: action.payload,
       };
     default:
