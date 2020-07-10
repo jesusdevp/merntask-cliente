@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Sidebar from "../layout/Sidebar";
 import Bar from "../layout/Bar";
 import FormTask from "../tasks/FormTask";
 import ListTask from "../tasks/ListTasks";
+import AuthContext from "../../context/authentication/authContext";
 
 const Projects = () => {
+  // Extraer la informacion de autenticacion
+  const authContext = useContext(AuthContext);
+  const { usuarioAutenticado } = authContext;
+
+  useEffect(() => {
+    usuarioAutenticado();
+  }, []);
+
   return (
     <div className="contenedor-app">
       <Sidebar />
