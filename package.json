@@ -34,7 +34,5 @@
       "last 1 safari version"
     ]
   },
-  "optionalDependencies": {
-    "uuid": "^8.2.0"
-  }
+  "optionalDependencies": {}
 }

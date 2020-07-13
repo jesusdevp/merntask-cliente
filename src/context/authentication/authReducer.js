@@ -25,6 +25,7 @@ export default (state, action) => {
         usuario: action.payload,
         cargando: false,
       };
+    case CERRAR_SESION:
     case LOGIN_ERROR:
     case REGISTRO_ERROR:
       localStorage.removeItem("token");

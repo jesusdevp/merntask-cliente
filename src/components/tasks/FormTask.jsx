@@ -1,17 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
 import ProjectContext from "../../context/projects/projectContext";
 import TaskContext from "../../context/tasks/taskContext";
+import AlertaContext from "../../context/alerts/alertContext";
 
 const FormTask = () => {
   //Extraer si un proyecto esta activo
   const projectContext = useContext(ProjectContext);
   const { proyecto } = projectContext;
 
+  const alertaContext = useContext(AlertaContext);
+  const { alerta, mostrarAlerta } = alertaContext;
+
   //obtener la funcion del context de tarea
   const taskContext = useContext(TaskContext);
   const {
     tareaseleccionada,
-    errortarea,
     agregarTarea,
     validarTarea,
     obtenerTareas,
@@ -58,14 +61,15 @@ const FormTask = () => {
     // validar
     if (nombre.trim() === "") {
       validarTarea();
+      mostrarAlerta("El nombre de la tarea es obligatorio", "mensaje error");
       return;
     }
 
     // Si es edicion o si es nueva tarea
     if (tareaseleccionada === null) {
       //Agregar nueva tarea al state
-      tarea.proyectoId = proyectoActual.id;
-      tarea.estado = false;
+      tarea.proyecto = proyectoActual._id;
+
       agregarTarea(tarea);
     } else {
       //Actualizar tarea existente
@@ -76,7 +80,7 @@ const FormTask = () => {
     }
 
     // Obtener y filtrar las tareas del proyecto actual
-    obtenerTareas(proyectoActual.id);
+    obtenerTareas(proyectoActual._id);
 
     //reiniciar el form
     guardarTarea({
@@ -105,8 +109,8 @@ const FormTask = () => {
           />
         </div>
       </form>
-      {errortarea ? (
-        <p className="mensaje error">El nombre de la tarea es obligatorio</p>
+      {alerta ? (
+        <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div>
       ) : null}
     </div>
   );

@@ -103,8 +103,30 @@ a {
     background-color: var(--blanco);
     flex: 0 0 300px;
   }
+
   .seccion-principal {
     flex: 1;
+  }
+}
+@media (max-width: 768px) {
+  .contenedor-app {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 100vh;
+  }
+
+  aside {
+    order: 2;
+    background-color: var(--blanco);
+    /* flex: 0 0 300px; */
+  }
+
+  .seccion-principal {
+    order: 3;
+    flex: 1;
+  }
+  .contenedor-tareas {
+    order: 2;
   }
 }
 
