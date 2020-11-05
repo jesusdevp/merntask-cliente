@@ -80,70 +80,63 @@ const Signup = (props) => {
   };
 
   return (
-    <div className="form-usuario">
+    <section className="signup">
       {alerta ? (
         <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div>
       ) : null}
-      <div className="contenedor-form sombra-dark">
-        <h1>Crear Cuenta</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="campo-form">
-            <label htmlFor="nombre">Nombre</label>
-            <input
+      <section className="signup__container">
+        <h2>Crear Cuenta</h2>
+        <form onSubmit={handleSubmit} className='signup__container--form'>
+        <input
               type="text"
               id="nombre"
               name="nombre"
               placeholder="Tu Nombre"
               value={nombre}
               onChange={handleChange}
+              className='input'
             />
-          </div>
-          <div className="campo-form">
-            <label htmlFor="email">Email</label>
-            <input
+          <input
               type="email"
               id="email"
               name="email"
               placeholder="Tu Email"
               value={email}
               onChange={handleChange}
+              className='input'
             />
-          </div>
-          <div className="campo-form">
-            <label htmlFor="password">Password</label>
-            <input
+          <input
               type="password"
               id="password"
               name="password"
               placeholder="Tu Password"
               value={password}
               onChange={handleChange}
+              className='input'
             />
-          </div>
-          <div className="campo-form">
-            <label htmlFor="confirmar">Confirmar Password</label>
-            <input
+           <input
               type="password"
               id="confirmar"
               name="confirmar"
               placeholder="Repite tu Password"
               value={confirmar}
               onChange={handleChange}
+              className='input'
             />
-          </div>
-          <div className="campo-form">
-            <input
+          <button
               type="submit"
-              className="btn btn-primario btn-block"
+              className="button"
               value="Registrarme"
-            />
-          </div>
+            >Registrarme</button>
         </form>
-        <Link to={"/"} className="enlace-cuenta">
+        <p className="signup__container--register">
+        <Link to={"/"} >
           Volver a Iniciar Sesión
         </Link>
-      </div>
-    </div>
+        </p>
+        
+      </section>
+    </section>
   );
 };
 
