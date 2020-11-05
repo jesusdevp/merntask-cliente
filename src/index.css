@@ -31,7 +31,7 @@ h2 {
   font-weight: 900;
   margin: 0 0 4rem 0;
   text-align: center;
-  color: var(--azul2);
+  /* color: var(--azul2); */
 }
 h1 span {
   font-weight: 400;
@@ -304,47 +304,106 @@ aside {
   transition: opacity 200ms;
 }
 
-.form-usuario {
-  background-color: var(--azul2);
+.login {
+  background: linear-gradient(#21c08b, #ab88ff);
   height: 100vh;
-  min-height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding: 0px 30px;
+  /* min-height: calc(100vh - 200px); */
 }
-
-.contenedor-form {
-  padding: 5rem 3rem;
-  max-width: 500px;
-  width: 95%;
-  background-color: var(--blanco);
-  border-radius: 1rem;
-}
-
-.campo-form {
+.login__container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 40px;
+  color: white;
+  padding: 60px 68px 40px;
+  min-height: 700px;
+  width: 400px;
   display: flex;
-  margin-bottom: 2rem;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.login__container--form {
+  display: flex;
+  flex-direction: column;
+}
+.login__container--form label {
+  font-size: 14px;
+}
+.login__container--register a {
+  padding-left: 3rem;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+.login__container--register a:hover {
+  text-decoration: underline;
+}
+/* .login__container--remember-me {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.login__container--remember-me a {
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+} */
+/* .login__container--remember-me a:hover {
+  text-decoration: underline;
+}
+.login__container--social-media > div {
+  display: flex;
   align-items: center;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
-.campo-form:last-of-type {
-  margin: 0;
+.login__container--social-media > div > img {
+  width: 30px;
+  margin-right: 10px;
 }
-.campo-form label {
-  flex: 0 0 100px;
-  font-family: var(--textFont);
+.login__container--register a {
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
-.campo-form input[type="password"],
-.campo-form input[type="email"],
-.campo-form input[type="text"] {
-  border: 1px solid #e1e1e1;
-  padding: 1rem;
-  flex: 1;
+.login__container--register a:hover {
+  text-decoration: underline;
+} */
+.input {
+  background-color: transparent;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 2px solid white;
+  font-size: 16px;
+  font-family: "Muli", sans-serif;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+  outline: none;
+  height: 50px;
 }
-
-.enlace-cuenta {
-  margin-top: 2rem;
-  display: block;
-  opacity: 0.7;
+::placeholder {
+  color: white;
+}
+.button {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Muli", sans-serif;
+  height: 50px;
+  letter-spacing: 1px;
+  margin: 1;
 }
 
 .alerta {

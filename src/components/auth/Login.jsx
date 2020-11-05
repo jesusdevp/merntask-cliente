@@ -53,48 +53,44 @@ const Login = (props) => {
   };
 
   return (
-    <div className="form-usuario">
+    <section className="login">
       {alerta ? (
         <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div>
       ) : null}
-      <div className="contenedor-form sombra-dark">
-        <h1>Iniciar Sesión</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="campo-form">
-            <label htmlFor="email">Email</label>
-            <input
+      <section className="login__container">
+          <h2>Iniciar Sesión</h2>
+        <form onSubmit={handleSubmit} className='login__container--form'>
+        <input
               type="email"
               id="email"
               name="email"
               placeholder="Tu Email"
               value={email}
               onChange={handleChange}
+              className='input'
             />
-          </div>
-          <div className="campo-form">
-            <label htmlFor="password">Password</label>
-            <input
+          <input
               type="password"
               id="password"
               name="password"
               placeholder="Tu Password"
               value={password}
               onChange={handleChange}
+              className='input'
             />
-          </div>
-          <div className="campo-form">
-            <input
+          <button
               type="submit"
-              className="btn btn-primario btn-block"
+              className="button"
               value="Iniciar Sesión"
-            />
-          </div>
+            >Iniciar Sesión</button>
         </form>
-        <Link to={"./signup"} className="enlace-cuenta">
-          Crear Cuenta
+        <p className="login__container--register">No tienes una cuenta
+        <Link to={"./signup"} >
+          Registrate
         </Link>
-      </div>
-    </div>
+        </p>
+      </section>
+    </section>
   );
 };
 
